@@ -1,9 +1,9 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import '@/assets/styles/main.scss'
-import router from './router'
+import "@/assets/styles/main.scss";
+import router from "./router";
 
-const app = createApp(App)
+const app = createApp(App);
 
 // Регистрируем глобальную директиву
 // app.directive('uppercase', {

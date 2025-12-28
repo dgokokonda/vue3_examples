@@ -18,8 +18,8 @@ const emit = defineEmits<{
 // Объект $attrs включает все атрибуты, которые не объявлены в props или emits (например, class, style, v-on слушатели и т.д.).
 // с inheritAttrs: false и v-bind="$attrs" компонент наследует атрибуты, но вы сами решаете, куда именно их применить
 defineOptions({
-  inheritAttrs: false
-})
+  inheritAttrs: false,
+});
 
 const inputValue = computed({
   get: () => props.modelValue,
@@ -39,11 +39,17 @@ function handleChange(event: Event) {
 
 <template>
   <div class="input-wrapper">
-    <input v-bind="$attrs" type="text" :name="name" :id="name" v-model="inputValue" @input="handleInput"
-      @change="handleChange" />
+    <input
+      v-bind="$attrs"
+      type="text"
+      :name="name"
+      :id="name"
+      v-model="inputValue"
+      @input="handleInput"
+      @change="handleChange"
+    />
     <p v-html="modelValue"></p>
   </div>
-
 </template>
 
 <style scoped></style>

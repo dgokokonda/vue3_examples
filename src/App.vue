@@ -20,6 +20,7 @@ import { ref } from "vue";
     <RouterLink to="/">Go to Home</RouterLink>
     <RouterLink to="/about">Go to About</RouterLink>
     <RouterLink to="/todolist">Go to TodoList</RouterLink>
+    <RouterLink to="/debug">Go to Debug</RouterLink>
   </nav>
   <main>
     <RouterView />

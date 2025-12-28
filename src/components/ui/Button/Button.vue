@@ -10,9 +10,9 @@ const emit = defineEmits<{
 }>();
 
 const objectOfAttrs = {
-  class: 'button',
-  style: 'background-color:blue; color: white'
-}
+  class: "button",
+  style: "background-color:blue; color: white",
+};
 
 function handleClick(event: MouseEvent) {
   if (!props.disabled) {

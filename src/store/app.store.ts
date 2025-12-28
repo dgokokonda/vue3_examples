@@ -18,7 +18,7 @@ export const useAppStore = defineStore("app", () => {
   // Getters
   const hasNotifications = computed(() => notifications.value.length > 0);
   const unreadCount = computed(
-    () => notifications.value.filter((n: Notification) => !n.read).length,
+    () => notifications.value.filter((n: Notification) => !n.read).length
   );
 
   // Actions
@@ -29,7 +29,7 @@ export const useAppStore = defineStore("app", () => {
 
   function addNotification(
     message: string,
-    type: "info" | "success" | "error",
+    type: "info" | "success" | "error"
   ) {
     notifications.value.push({
       id: Date.now(),
@@ -42,7 +42,7 @@ export const useAppStore = defineStore("app", () => {
 
   function markAsRead(id: number) {
     const notification = notifications.value.find(
-      (n: Notification) => n.id === id,
+      (n: Notification) => n.id === id
     );
     if (notification) {
       notification.read = true;

@@ -1,13 +1,13 @@
 <template>
   <div class="avatar">
-    <img v-bind="$attrs" :src="avatar" alt="Avatar">
+    <img v-bind="$attrs" :src="avatar" alt="Avatar" />
   </div>
 </template>
 <script setup lang="ts">
 interface Props {
-  avatar: string
+  avatar: string;
 }
-const { avatar } = defineProps<Props>()
+const { avatar } = defineProps<Props>();
 </script>
 <style scoped lang="scss">
 .avatar {
@@ -21,6 +21,6 @@ const { avatar } = defineProps<Props>()
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 15px;
-  border: 3px solid #4CAF50;
+  border: 3px solid #4caf50;
 }
 </style>
