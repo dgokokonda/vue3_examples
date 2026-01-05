@@ -1,5 +1,19 @@
-<script setup>
-import { ref } from "vue";
+<script setup lang="ts">
+import { useRoute } from "vue-router";
+import { computed } from "vue";
+import MainLayout from "./components/layout/MainLayout.vue";
+import AuthLayout from "./components/layout/AuthLayout.vue";
+
+const route = useRoute();
+const layoutComponents = {
+  main: MainLayout,
+  auth: AuthLayout,
+} as const;
+
+const layout = computed(() => {
+  const layoutName = route.meta.layout as keyof typeof layoutComponents;
+  return layoutComponents[layoutName] || null;
+});
 // import Button from "./components/ui/Button/Button.vue";
 // import Input from "./components/ui/Input";
 // import Checkbox from "./components/ui/Checkbox";
@@ -16,15 +30,7 @@ import { ref } from "vue";
   <!-- <Button @click="onButtonClick">Click me</Button>
   <Input name="name" v-model="inputValue"></Input>
   <Checkbox name="checkbox" label="Checkbox" v-model="checkboxValue"></Checkbox> -->
-  <nav>
-    <RouterLink to="/">Go to Home</RouterLink>
-    <RouterLink to="/about">Go to About</RouterLink>
-    <RouterLink to="/todolist">Go to TodoList</RouterLink>
-    <RouterLink to="/debug">Go to Debug</RouterLink>
-  </nav>
-  <main>
-    <RouterView />
-  </main>
+  <component v-if="layout" :is="layout"></component>
 </template>
 
 <style scoped></style>

@@ -1,6 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/test/setup.ts"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/test/setup.ts", "vuex-shim.d.ts"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "composite": true,
@@ -18,6 +18,8 @@
     "useDefineForClassFields": true,
     "allowJs": true,
     "skipLibCheck": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true
   }
 }
