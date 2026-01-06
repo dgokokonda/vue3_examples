@@ -35,9 +35,10 @@ export function useLoginForm() {
       .min(MIN_LENGTH, "длина пароля не менее 6 символов")
   );
   const onSubmit = handleSubmit(async (values: any) => {
-    console.log(values);
-    await store.dispatch("auth/login", values);
-    router.push("/");
+    try {
+      await store.dispatch("auth/login", values);
+      router.push("/");
+    } catch (error) {}
   });
   const isTooManyAttempts = computed(() => submitCount.value > 3);
 

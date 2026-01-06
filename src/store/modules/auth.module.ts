@@ -1,4 +1,5 @@
-// store/modules/auth.module.ts
+import { handleError } from "@/utils/error";
+import axios from "axios";
 const JWT_TOKEN = "jwt-token";
 
 interface AuthState {
@@ -47,19 +48,58 @@ const authModule = {
 
   actions: {
     async login(
-      { commit }: { commit: (mutation: string, payload?: any) => void },
-      credentials: LoginCredentials
+      {
+        commit,
+        dispatch,
+      }: {
+        commit: (mutation: string, payload?: any) => void;
+        dispatch: (
+          action: string,
+          payload?: any,
+          options?: { root?: boolean }
+        ) => Promise<any>;
+      },
+      payload: any
+      // credentials: LoginCredentials
     ) {
       try {
-        // Здесь будет реальный API запрос
-        // const response = await api.login(credentials);
-        // const token = response.data.token;
+        const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.VUE_APP_FB_KEY}`;
+        const { data } = await axios.post(url, {
+          ...payload,
+          returnSecureToken: true,
+        });
+        if (!data) return null;
 
-        const token = "some-jwt-token"; // временная заглушка
+        const token = data.idToken; // временная заглушка
         commit("SET_TOKEN", token);
+        dispatch("clearMessage", null, { root: true });
+
         return token;
       } catch (error) {
-        console.error("Login failed:", error);
+        if (axios.isAxiosError(error) && error.response) {
+          console.error(
+            "Login failed:",
+            handleError(error.response.data.error.message)
+          );
+          dispatch(
+            "setMessage",
+            {
+              value: handleError(error.response.data.error.message),
+              type: "danger",
+            },
+            { root: true }
+          );
+        } else {
+          console.error("Login failed:", error);
+          dispatch(
+            "setMessage",
+            {
+              value: "Ошибка при входе в систему",
+              type: "danger",
+            },
+            { root: true }
+          );
+        }
         throw error;
       }
     },

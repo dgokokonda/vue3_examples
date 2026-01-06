@@ -65,7 +65,13 @@ router.beforeEach((to, from, next) => {
   if (requiredAuth && store.getters["auth/isAuthenticated"]) next();
   else if (requiredAuth && !store.getters["auth/isAuthenticated"]) {
     next("/auth?message=auth");
-  } else next();
+  } else if (
+    to.meta.layout === "auth" &&
+    store.getters["auth/isAuthenticated"] &&
+    !requiredAuth
+  )
+    next("/");
+  else next();
 });
 
 export default router;

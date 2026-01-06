@@ -8,14 +8,44 @@ if (import.meta.env.DEV) {
 }
 
 export interface RootState {
+  message: string | null;
   // другие модули могут быть добавлены здесь
 }
 
 const store = createStore<RootState>({
   plugins,
-  state: {},
-  mutations: {},
-  actions: {},
+  state() {
+    return {
+      message: null,
+    };
+  },
+  mutations: {
+    setMessage(state: RootState, message: string) {
+      state.message = message;
+    },
+    clearMessage(state: RootState) {
+      state.message = null;
+    },
+  },
+  actions: {
+    setMessage(
+      { commit }: { commit: (mutation: string, payload?: any) => void },
+      message: string
+    ) {
+      commit("setMessage", message);
+
+      setTimeout(() => {
+        commit("clearMessage");
+      }, 3000);
+    },
+    clearMessage({
+      commit,
+    }: {
+      commit: (mutation: string, payload?: any) => void;
+    }) {
+      commit("clearMessage");
+    },
+  },
   modules: {
     auth: authModule, // Обратите внимание: 'auth' - это ключ модуля
   },
