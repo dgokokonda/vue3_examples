@@ -5,6 +5,7 @@ import HomeView from "@/views/HomeView.vue";
 import AboutView from "@/views/AboutView.vue";
 import TodoListView from "@/views/TodoListView.vue";
 import DebugView from "@/views/DebugView.vue";
+import HelpView from "@/views/HelpView.vue";
 
 const routes = [
   {
@@ -52,11 +53,22 @@ const routes = [
       auth: false, // не требует авторизацию
     },
   },
+  {
+    path: "/help",
+    name: "Help",
+    component: HelpView,
+    meta: {
+      layout: "main",
+      auth: true,
+    },
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  linkActiveClass: "active",
+  linkExactActiveClass: "exact-active",
 });
 
 router.beforeEach((to, from, next) => {

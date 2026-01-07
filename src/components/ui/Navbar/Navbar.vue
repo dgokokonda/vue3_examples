@@ -6,7 +6,7 @@
         <router-link to="/">Заявки</router-link>
       </li>
       <li>
-        <router-link to="/auth">Помощь</router-link>
+        <router-link to="/help">Помощь</router-link>
       </li>
       <li>
         <a href="#">Сообщения</a>
@@ -34,3 +34,10 @@ export default {
   },
 };
 </script>
+<style>
+.navbar {
+}
+.navbar .exact-active {
+  color: green;
+}
+</style>
