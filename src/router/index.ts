@@ -62,6 +62,15 @@ const routes = [
       auth: true,
     },
   },
+  {
+    path: "/request/:id",
+    name: "Request",
+    component: () => import("../views/RequestView.vue"),
+    meta: {
+      layout: "main",
+      auth: true,
+    },
+  },
 ];
 
 const router = createRouter({

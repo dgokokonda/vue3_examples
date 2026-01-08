@@ -53,6 +53,7 @@
   </Transition>
 </template>
 <script setup lang="ts">
+import { useStore } from "vuex";
 import { useRequestForm } from "@/composables/useRequestForm";
 interface Props {
   show: boolean;
@@ -61,8 +62,9 @@ const props = defineProps<Props>();
 const emit = defineEmits<{
   created: [];
 }>();
+const store = useStore();
 const submit = async (values: any) => {
-  await console.log(values);
+  await store.dispatch("request/create", values);
   emit("created");
 };
 const {

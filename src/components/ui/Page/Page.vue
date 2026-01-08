@@ -8,9 +8,8 @@
   </div>
 </template>
 <script setup lang="ts">
-interface Props {
-  title: { type: String; required: true };
-}
-const props = defineProps<Props>();
+const props = defineProps({
+  title: { type: String, required: true },
+});
 document.title = props.title + " | Клон банка";
 </script>

@@ -1,6 +1,7 @@
 // подключает модули и экспортирует настроенный store для всего приложения
 import { createStore, createLogger } from "vuex";
 import authModule from "./modules/auth.module";
+import requestModule from "./modules/request.module";
 
 const plugins = [];
 if (import.meta.env.DEV) {
@@ -48,6 +49,7 @@ const store = createStore<RootState>({
   },
   modules: {
     auth: authModule, // Обратите внимание: 'auth' - это ключ модуля
+    request: requestModule,
   },
 });
 

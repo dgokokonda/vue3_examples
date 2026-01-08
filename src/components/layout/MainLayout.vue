@@ -9,9 +9,15 @@
     </nav>
   </div>
   <main>
+    <Alert v-if="message" />
     <RouterView />
   </main>
 </template>
 <script setup lang="ts">
 import Navbar from "../ui/Navbar/Navbar.vue";
+import Alert from "../ui/Alert/Alert.vue";
+import { useStore } from "vuex";
+import { computed } from "vue";
+const store = useStore();
+const message = computed(() => store.state.message);
 </script>

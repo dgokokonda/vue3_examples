@@ -2,6 +2,7 @@
 
 interface ImportMetaEnv {
   readonly VITE_APP_FB_KEY: string;
+  readonly VUE_APP_FB_URL: string;
 }
 
 interface ImportMeta {
@@ -11,6 +12,7 @@ interface ImportMeta {
 declare namespace NodeJS {
   interface ProcessEnv {
     VUE_APP_FB_KEY: string;
+    VUE_APP_FB_URL: string;
   }
 }
 

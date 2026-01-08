@@ -1,7 +1,7 @@
 <template>
   <div class="alert">
-    <p :class="['alert-title', message.type]">{{ title }}</p>
-    <p>{{ message.value }}</p>
+    <p v-if="title" :class="['alert-title', message?.type]">{{ title }}</p>
+    <p v-if="message?.value">{{ message.value }}</p>
     <span class="alert-close" @click="closeAlert">X</span>
   </div>
 </template>
@@ -20,7 +20,9 @@ const TITLE_MAP = {
 };
 const message = computed(() => store.state.message);
 const title = computed(
-  () => TITLE_MAP[message.value.type as keyof typeof TITLE_MAP]
+  () =>
+    message?.value?.type &&
+    TITLE_MAP[message.value.type as keyof typeof TITLE_MAP]
 );
 </script>
 <style scoped>
