@@ -1,5 +1,6 @@
 <template>
   <Navbar />
+  <Sidebar />
   <div class="container">
     <nav>
       <RouterLink to="/">Go to Home</RouterLink>
@@ -16,6 +17,7 @@
 <script setup lang="ts">
 import Navbar from "../ui/Navbar/Navbar.vue";
 import Alert from "../ui/Alert/Alert.vue";
+import Sidebar from "../ui/Sidebar/Sidebar.vue";
 import { useStore } from "vuex";
 import { computed } from "vue";
 const store = useStore();

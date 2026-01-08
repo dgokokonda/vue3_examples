@@ -9,7 +9,7 @@
         <router-link to="/help">Помощь</router-link>
       </li>
       <li>
-        <a href="#">Сообщения</a>
+        <a href="#" @click.prevent="openSidebar">Сообщения</a>
       </li>
       <li>
         <a href="#" @click.prevent="logout">Выход</a>
@@ -20,6 +20,7 @@
 <script>
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import { computed } from "vue";
 export default {
   setup() {
     const router = useRouter();
@@ -30,6 +31,7 @@ export default {
         await store.dispatch("auth/logout");
         router.push("/auth");
       },
+      openSidebar: () => store.commit("openSidebar"),
     };
   },
 };

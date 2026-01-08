@@ -18,6 +18,7 @@ const store = createStore<RootState>({
   state() {
     return {
       message: null,
+      sidebar: false,
     };
   },
   mutations: {
@@ -26,6 +27,12 @@ const store = createStore<RootState>({
     },
     clearMessage(state: RootState) {
       state.message = null;
+    },
+    openSidebar(state: RootState) {
+      state.sidebar = true;
+    },
+    closeSidebar(state: RootState) {
+      state.sidebar = false;
     },
   },
   actions: {
