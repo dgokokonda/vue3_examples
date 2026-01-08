@@ -7,6 +7,7 @@ const requestAxios = axios.create({
 
 requestAxios.interceptors.response.use(null, (error) => {
   if (error.response.status == 401) {
+    localStorage.removeItem("jwt-token");
     router.push("/auth?message=auth");
   }
 

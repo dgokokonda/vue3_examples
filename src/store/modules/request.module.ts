@@ -58,7 +58,7 @@ export default {
         dispatch(
           "setMessage",
           {
-            value: error,
+            value: error.message,
             type: "danger",
           },
           { root: true }
@@ -91,6 +91,108 @@ export default {
           "setMessage",
           {
             value: error,
+            type: "danger",
+          },
+          { root: true }
+        );
+      }
+    },
+    async loadById(
+      {
+        commit,
+        dispatch,
+      }: {
+        commit: (mutation: string, payload?: any) => void;
+        dispatch: (
+          action: string,
+          payload?: any,
+          options?: { root?: boolean }
+        ) => Promise<any>;
+      },
+      id: string
+    ) {
+      try {
+        const token = store.getters["auth/token"];
+        const url = `/requests/${id}.json?auth=${token}`;
+        const { data } = await axios.get(url);
+        return data;
+      } catch (error) {
+        dispatch(
+          "setMessage",
+          {
+            value: error,
+            type: "danger",
+          },
+          { root: true }
+        );
+      }
+    },
+    async remove(
+      {
+        commit,
+        dispatch,
+      }: {
+        commit: (mutation: string, payload?: any) => void;
+        dispatch: (
+          action: string,
+          payload?: any,
+          options?: { root?: boolean }
+        ) => Promise<any>;
+      },
+      id: string
+    ) {
+      try {
+        const token = store.getters["auth/token"];
+        const url = `/requests/${id}.json?auth=${token}`;
+        await axios.delete(url);
+        dispatch(
+          "setMessage",
+          {
+            value: "Заявка удалена",
+            type: "success",
+          },
+          { root: true }
+        );
+      } catch (error) {
+        dispatch(
+          "setMessage",
+          {
+            value: error.message,
+            type: "danger",
+          },
+          { root: true }
+        );
+      }
+    },
+    async update(
+      {
+        dispatch,
+      }: {
+        dispatch: (
+          action: string,
+          payload?: any,
+          options?: { root?: boolean }
+        ) => Promise<any>;
+      },
+      request: any
+    ) {
+      try {
+        const token = store.getters["auth/token"];
+        const url = `/requests/${request.id}.json?auth=${token}`;
+        await axios.put(url, request);
+        dispatch(
+          "setMessage",
+          {
+            value: "Заявка обновлена",
+            type: "success",
+          },
+          { root: true }
+        );
+      } catch (error) {
+        dispatch(
+          "setMessage",
+          {
+            value: error.message,
             type: "danger",
           },
           { root: true }

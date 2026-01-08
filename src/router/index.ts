@@ -6,6 +6,7 @@ import AboutView from "@/views/AboutView.vue";
 import TodoListView from "@/views/TodoListView.vue";
 import DebugView from "@/views/DebugView.vue";
 import HelpView from "@/views/HelpView.vue";
+import RequestView from "@/views/RequestView.vue";
 
 const routes = [
   {

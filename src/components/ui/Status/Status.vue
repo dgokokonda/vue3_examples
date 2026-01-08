@@ -2,7 +2,7 @@
   <span :class="['status', className]">{{ text }}</span>
 </template>
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, watch } from "vue";
 
 type StatusType = "active" | "done" | "cancelled" | "pending";
 
@@ -32,6 +32,11 @@ const textMap: Record<StatusType, string> = {
 
 const className = computed(() => classesMap[props.type] || classesMap.pending);
 const text = computed(() => textMap[props.type] || textMap.pending);
+
+watch(props.type, (newVal) => {
+  className.value = classesMap[newVal];
+  text.value = textMap[newVal];
+});
 </script>
 <style>
 .status.primary {
