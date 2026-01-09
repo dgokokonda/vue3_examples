@@ -58,7 +58,10 @@ export default {
         dispatch(
           "setMessage",
           {
-            value: error.message,
+            value:
+              error instanceof Error
+                ? error.message
+                : "Произошла неизвестная ошибка",
             type: "danger",
           },
           { root: true }
@@ -76,8 +79,8 @@ export default {
           payload?: any,
           options?: { root?: boolean }
         ) => Promise<any>;
-      },
-      payload: any
+      }
+      // payload: any
     ) {
       try {
         const token = store.getters["auth/token"];
@@ -99,10 +102,8 @@ export default {
     },
     async loadById(
       {
-        commit,
         dispatch,
       }: {
-        commit: (mutation: string, payload?: any) => void;
         dispatch: (
           action: string,
           payload?: any,
@@ -129,10 +130,8 @@ export default {
     },
     async remove(
       {
-        commit,
         dispatch,
       }: {
-        commit: (mutation: string, payload?: any) => void;
         dispatch: (
           action: string,
           payload?: any,
@@ -157,7 +156,10 @@ export default {
         dispatch(
           "setMessage",
           {
-            value: error.message,
+            value:
+              error instanceof Error
+                ? error.message
+                : "Произошла неизвестная ошибка",
             type: "danger",
           },
           { root: true }
@@ -192,7 +194,10 @@ export default {
         dispatch(
           "setMessage",
           {
-            value: error.message,
+            value:
+              error instanceof Error
+                ? error.message
+                : "Произошла неизвестная ошибка",
             type: "danger",
           },
           { root: true }

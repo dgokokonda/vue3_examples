@@ -32,12 +32,12 @@ export function useLocalStorage<T>(
 }
 
 // Использование:
-const todos = useLocalStorage<Todo[]>("todos", [
-  { id: 1, text: "Изучить Vue 3", completed: false, createdAt: new Date() },
-  {
-    id: 2,
-    text: "Написать композабль",
-    completed: true,
-    createdAt: new Date(),
-  },
-]);
+// const todos = useLocalStorage<Todo[]>("todos", [
+//   { id: 1, text: "Изучить Vue 3", completed: false, createdAt: new Date() },
+//   {
+//     id: 2,
+//     text: "Написать композабль",
+//     completed: true,
+//     createdAt: new Date(),
+//   },
+// ]);

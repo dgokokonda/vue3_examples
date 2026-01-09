@@ -56,7 +56,7 @@ interface Props {
   user: User;
 }
 
-const props = defineProps<Props>();
+const { user } = defineProps<Props>();
 const emit = defineEmits<{
   close: [];
 }>();

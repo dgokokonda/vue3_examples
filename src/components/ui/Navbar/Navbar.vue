@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar">
-    <h3>Онлайн банк</h3>
+    <h3>Навигация сайта</h3>
     <ul class="navbar-menu">
       <li>
         <router-link to="/">Заявки</router-link>

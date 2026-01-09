@@ -76,6 +76,7 @@ interface ListItem extends User {
   department: string;
   role: string;
   lastActive: string;
+  status?: "active" | "inactive";
   [key: string]: any;
 }
 
@@ -161,7 +162,7 @@ const filteredItems = computed(() => {
 
   const query = searchQuery.value.toLowerCase();
   return allItems.value.filter(
-    (item) =>
+    (item: ListItem) =>
       item.name.toLowerCase().includes(query) ||
       item.email.toLowerCase().includes(query) ||
       item.department.toLowerCase().includes(query) ||
@@ -221,7 +222,7 @@ const onVisible = (range: { start: number; end: number }) => {
 
   // Автоподгрузка при прокрутке вниз
   const threshold = filteredItems.value.length - 20;
-  if (range.end >= threshold && hasMore.value && !loadingMore.value) {
+  if (range?.end >= threshold && hasMore.value && !loadingMore.value) {
     loadMore();
   }
 };
@@ -276,10 +277,10 @@ defineExpose({
     hasMore.value = true;
   },
   addItem: (item: Omit<ListItem, "id">) => {
-    const newItem = {
+    const newItem: ListItem = {
       ...item,
       id: ++itemCounter.value,
-    };
+    } as ListItem;
     allItems.value.unshift(newItem);
     return newItem;
   },

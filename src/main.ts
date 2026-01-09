@@ -3,9 +3,17 @@ import App from "./App.vue";
 import "@/assets/styles/main.scss";
 import router from "./router";
 import store from "./store";
-import VueVirtualScroller from "vue-virtual-scroller";
+import * as VueVirtualScroller from "vue-virtual-scroller";
+import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
 
 const app = createApp(App);
+
+// Создаем объект плагина
+const VueVirtualScrollerPlugin = {
+  install(app: any) {
+    app.component("RecycleScroller", VueVirtualScroller.RecycleScroller);
+  },
+};
 
 // Регистрируем глобальную директиву
 // app.directive('uppercase', {
@@ -21,4 +29,4 @@ const app = createApp(App);
 //   }
 // })
 
-app.use(store).use(router).use(VueVirtualScroller).mount("#app");
+app.use(store).use(router).use(VueVirtualScrollerPlugin).mount("#app");

@@ -54,7 +54,7 @@ onMounted(() => {
 const {
   todos,
   newTodoText,
-  filter,
+  // filter,
   filteredTodos,
   activeCount,
   completedCount,

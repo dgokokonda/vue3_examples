@@ -60,7 +60,7 @@ interface ListItem {
   department: string;
   role: string;
   lastActive: string;
-  status?: string;
+  status?: "active" | "inactive";
   [key: string]: any;
 }
 

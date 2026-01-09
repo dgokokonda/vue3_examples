@@ -6,9 +6,9 @@ interface AuthState {
   token: string | null;
 }
 
-interface RootState {
-  // другие модули...
-}
+// interface RootState {
+//   // другие модули...
+// }
 
 interface LoginCredentials {
   email: string;

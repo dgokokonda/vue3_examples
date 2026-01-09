@@ -90,7 +90,7 @@ const router = createRouter({
   linkExactActiveClass: "exact-active",
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _, next) => {
   const requiredAuth = to.meta.auth;
 
   if (requiredAuth && store.getters["auth/isAuthenticated"]) next();

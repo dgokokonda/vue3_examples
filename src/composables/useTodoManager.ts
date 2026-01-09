@@ -1,12 +1,4 @@
-import {
-  ref,
-  computed,
-  useTemplateRef,
-  watchEffect,
-  onMounted,
-  type Ref,
-  nextTick,
-} from "vue";
+import { ref, computed, type Ref, nextTick } from "vue";
 import { type Todo } from "./types/todo";
 import { useLocalStorage } from "./useLocalStorage";
 

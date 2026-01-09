@@ -10,6 +10,7 @@ if (import.meta.env.DEV) {
 
 export interface RootState {
   message: string | null;
+  sidebar: boolean;
   // другие модули могут быть добавлены здесь
 }
 

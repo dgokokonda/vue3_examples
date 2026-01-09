@@ -12,9 +12,9 @@
 </template>
 <script setup lang="ts">
 import { ref, watch, computed } from "vue";
-const props = defineProps<{
-  modelValue: { name: string; status: string };
-}>();
+// const props = defineProps<{
+//   modelValue: { name: string; status: string };
+// }>();
 const emit = defineEmits<{
   (e: "update:modelValue", value: { name: string; status: string }): void;
 }>();
