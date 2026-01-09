@@ -17,7 +17,14 @@
               </div>
               <div class="form-control" :class="{ invalid: !!pError }">
                 <label for="phone">Телефон</label>
-                <input v-model="phone" type="text" id="phone" @blur="pBlur" />
+                <input
+                  v-model="phone"
+                  type="text"
+                  id="phone"
+                  v-mask="'+7 (###) ###-##-##'"
+                  placeholder="+7 (___) ___-__-__"
+                  @blur="pBlur"
+                />
                 <small v-if="pError">{{ pError }}</small>
               </div>
               <div class="form-control" :class="{ invalid: !!aError }">
@@ -55,6 +62,7 @@
 <script setup lang="ts">
 import { useStore } from "vuex";
 import { useRequestForm } from "@/composables/useRequestForm";
+
 interface Props {
   show: boolean;
 }

@@ -5,8 +5,11 @@ import router from "./router";
 import store from "./store";
 import * as VueVirtualScroller from "vue-virtual-scroller";
 import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
+import { mask } from "vue-the-mask";
 
 const app = createApp(App);
+
+app.directive("mask", mask as any);
 
 // Создаем объект плагина
 const VueVirtualScrollerPlugin = {
