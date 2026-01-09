@@ -137,6 +137,59 @@ const authModule = {
       // await dispatch("fetchUserData", token);
       return token;
     },
+    async register(
+      {
+        commit,
+        dispatch,
+      }: {
+        commit: (mutation: string, payload?: any) => void;
+        dispatch: (
+          action: string,
+          payload?: any,
+          options?: { root?: boolean }
+        ) => Promise<any>;
+      },
+      payload: any
+    ) {
+      try {
+        const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.VUE_APP_FB_KEY}`;
+        const { data } = await axios.post(url, {
+          ...payload,
+          returnSecureToken: true,
+        });
+        if (!data) return null;
+        const token = data.idToken; // временная заглушка
+        commit("SET_TOKEN", token);
+        dispatch("clearMessage", null, { root: true });
+        return token;
+      } catch (error) {
+        if (axios.isAxiosError(error) && error.response) {
+          console.error(
+            "Login failed:",
+            handleError(error.response.data.error.message)
+          );
+          dispatch(
+            "setMessage",
+            {
+              value: handleError(error.response.data.error.message),
+              type: "danger",
+            },
+            { root: true }
+          );
+        } else {
+          console.error("Login failed:", error);
+          dispatch(
+            "setMessage",
+            {
+              value: "Ошибка при входе в систему",
+              type: "danger",
+            },
+            { root: true }
+          );
+        }
+        throw error;
+      }
+    },
   },
 };
 

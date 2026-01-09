@@ -7,6 +7,7 @@ import TodoListView from "@/views/TodoListView.vue";
 import DebugView from "@/views/DebugView.vue";
 import HelpView from "@/views/HelpView.vue";
 import VirtualListView from "@/views/VirtualListView.vue";
+import SignUpView from "@/views/SignUpView.vue";
 
 const routes = [
   {
@@ -79,6 +80,15 @@ const routes = [
     meta: {
       layout: "main",
       auth: true,
+    },
+  },
+  {
+    path: "/createUser",
+    name: "Sign up",
+    component: SignUpView,
+    meta: {
+      layout: "auth",
+      auth: false,
     },
   },
 ];

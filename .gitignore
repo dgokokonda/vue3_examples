@@ -34,3 +34,20 @@ coverage
 
 # Vitest
 __screenshots__/
+
+
+# Firebase
+serviceAccountKey.json
+*.key
+*.pem
+*.cert
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Ключи и сертификаты
+*.p12
+*.pfx
+*.crt

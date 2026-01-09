@@ -24,6 +24,7 @@ import AuthLayout from "@/components/layout/AuthLayout.vue";
       >
         Log in
       </button>
+      <button class="btn warning" @click="redirect">Sign up</button>
       <span v-if="isTooManyAttempts" class="danger-text"
         >Временно заблокирована возможность входа</span
       >
@@ -32,6 +33,8 @@ import AuthLayout from "@/components/layout/AuthLayout.vue";
 </template>
 <script setup lang="ts">
 import { useLoginForm } from "@/composables/useLoginForm";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 const {
   email,
@@ -44,6 +47,8 @@ const {
   isSubmitting,
   isTooManyAttempts,
 } = useLoginForm();
+
+const redirect = () => router.push("/createUser");
 </script>
 <!-- <script>
 import { useLoginForm } from "@/composables/useLoginForm";
@@ -54,3 +59,9 @@ export default {
   },
 };
 </script> -->
+<style>
+.btn.warning {
+  background-color: lightblue;
+  margin-left: 10px;
+}
+</style>

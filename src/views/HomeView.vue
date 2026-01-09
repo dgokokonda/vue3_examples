@@ -30,7 +30,7 @@ onMounted(async () => {
 });
 
 watch(filter, (newFilter) => {
-  console.log(newFilter);
+  // console.log(newFilter);
 });
 </script>
 <template>
