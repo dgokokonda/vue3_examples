@@ -9,6 +9,9 @@
         <router-link to="/help">Помощь</router-link>
       </li>
       <li>
+        <router-link to="/list">Виртуализированный список</router-link>
+      </li>
+      <li>
         <a href="#" @click.prevent="openSidebar">Сообщения</a>
       </li>
       <li>

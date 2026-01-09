@@ -6,7 +6,7 @@ import AboutView from "@/views/AboutView.vue";
 import TodoListView from "@/views/TodoListView.vue";
 import DebugView from "@/views/DebugView.vue";
 import HelpView from "@/views/HelpView.vue";
-import RequestView from "@/views/RequestView.vue";
+import VirtualListView from "@/views/VirtualListView.vue";
 
 const routes = [
   {
@@ -67,6 +67,15 @@ const routes = [
     path: "/request/:id",
     name: "Request",
     component: () => import("../views/RequestView.vue"),
+    meta: {
+      layout: "main",
+      auth: true,
+    },
+  },
+  {
+    path: "/list",
+    name: "Virtual List",
+    component: VirtualListView,
     meta: {
       layout: "main",
       auth: true,

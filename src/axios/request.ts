@@ -9,6 +9,7 @@ requestAxios.interceptors.response.use(null, (error) => {
   if (error.response.status == 401) {
     localStorage.removeItem("jwt-token");
     router.push("/auth?message=auth");
+    location.reload();
   }
 
   return Promise.reject(error);

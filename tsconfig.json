@@ -11,7 +11,7 @@
     },
     "target": "ES2020",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "types": ["vite/client", "vitest/globals", "node"],
+    "types": ["vite/client", "vitest/globals", "node", "vue-virtual-scroller"],
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
