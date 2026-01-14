@@ -6,7 +6,11 @@
       tabindex="0"
       @keydown.esc="$emit('close')"
     >
-      <div class="modal-container">
+      <div
+        v-click-outside="handleClickOutside"
+        ref="modalRef"
+        class="modal-container"
+      >
         <div class="modal-header">
           <slot name="header">
             <p>Привет из модального окна!</p>
@@ -45,11 +49,15 @@
   </Transition>
 </template>
 <script setup lang="ts">
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, ref } from "vue";
 interface Props {
   show: boolean;
 }
 const props = defineProps<Props>();
+const emit = defineEmits<{
+  close: [];
+}>();
+const modalRef = ref<HTMLElement | null>(null);
 
 const onPending = () => console.log("is pending");
 const onResolve = () => console.log("resolved");
@@ -67,6 +75,14 @@ const AsyncModalData = defineAsyncComponent({
   delay: 200,
   timeout: 5000,
 });
+
+const handleClickOutside = (event: MouseEvent) => {
+  if (!modalRef.value) return;
+
+  if (!modalRef.value.contains(event.target as Node)) {
+    emit("close");
+  }
+};
 </script>
 <style scoped>
 .modal-wrapper {

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="sidebar" class="sidebar">
+  <div v-if="sidebar" class="sidebar" v-click-outside="close">
     <span class="sidebar-close" @click="close"></span>
     <div class="sidebar-content">
       <p>
