@@ -8,6 +8,6 @@ const title = defineModel("title", {
 <template>
   <div class="title">
     <h1>{{ title }}</h1>
-    <input type="text" v-model="title" />
+    <input v-uppercase type="text" v-model="title" />
   </div>
 </template>
