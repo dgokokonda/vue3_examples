@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { useStore } from "vuex";
+import { useRequestStore } from "@/stores";
 import AppHeader from "@/components/layout/AppHeader.vue";
 import Page from "@/components/ui/Page/Page.vue";
 import Status from "@/components/ui/Status/Status.vue";
@@ -10,7 +10,7 @@ import Loader from "@/components/ui/Loader/Loader.vue";
 
 const route = useRoute();
 const router = useRouter();
-const store = useStore();
+const requestStore = useRequestStore();
 const loading = ref(false);
 const request = ref<{
   id: string;
@@ -23,16 +23,13 @@ const status = ref("");
 
 onMounted(async () => {
   loading.value = true;
-  request.value = await store.dispatch(
-    "request/loadById",
-    route.params.id as string
-  );
+  request.value = await requestStore.loadById(route.params.id as string);
   status.value = request.value?.status;
   loading.value = false;
 });
 
 const removeRequest = async () => {
-  await store.dispatch("request/remove", route.params.id as string);
+  await requestStore.remove(route.params.id as string);
   router.push("/");
 };
 
@@ -42,7 +39,7 @@ const updateRequest = async () => {
     id: route.params.id as string,
     status: status.value,
   };
-  await store.dispatch("request/update", data);
+  await requestStore.update(data);
   request.value.status = status.value;
 };
 

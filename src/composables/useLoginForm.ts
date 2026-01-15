@@ -1,12 +1,11 @@
 import { computed, watch } from "vue";
 import * as yup from "yup";
 import { useField, useForm } from "vee-validate";
-import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import type { RootState } from "@/store";
+import { useUserStore } from "@/stores";
 
 export function useLoginForm() {
-  const store = useStore<RootState>();
+  const userStore = useUserStore();
   const router = useRouter();
   const { handleSubmit, isSubmitting, submitCount } = useForm();
   const MIN_LENGTH = 6;
@@ -36,9 +35,11 @@ export function useLoginForm() {
   );
   const onSubmit = handleSubmit(async (values: any) => {
     try {
-      await store.dispatch("auth/login", values);
+      await userStore.login(values);
       router.push("/");
-    } catch (error) {}
+    } catch (error) {
+      // console.error("Ошибка входа:", error);
+    }
   });
   const isTooManyAttempts = computed(() => submitCount.value > 3);
 

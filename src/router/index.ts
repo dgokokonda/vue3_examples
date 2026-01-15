@@ -1,5 +1,4 @@
 // пути страниц, lazy load, guards и т. д
-import store from "../store";
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import AboutView from "@/views/AboutView.vue";
@@ -100,17 +99,17 @@ const router = createRouter({
   linkExactActiveClass: "exact-active",
 });
 
-router.beforeEach((to, _, next) => {
+router.beforeEach(async (to, _, next) => {
   const requiredAuth = to.meta.auth;
 
-  if (requiredAuth && store.getters["auth/isAuthenticated"]) next();
-  else if (requiredAuth && !store.getters["auth/isAuthenticated"]) {
+  const { useAuthStore } = await import("@/stores/auth.store");
+  const authStore = useAuthStore();
+  const isAuthenticated = authStore.isAuthenticated;
+
+  if (requiredAuth && isAuthenticated) next();
+  else if (requiredAuth && !isAuthenticated) {
     next("/auth?message=auth");
-  } else if (
-    to.meta.layout === "auth" &&
-    store.getters["auth/isAuthenticated"] &&
-    !requiredAuth
-  )
+  } else if (to.meta.layout === "auth" && isAuthenticated && !requiredAuth)
     next("/");
   else next();
 });

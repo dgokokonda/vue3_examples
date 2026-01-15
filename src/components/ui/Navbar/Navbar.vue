@@ -21,20 +21,21 @@
   </nav>
 </template>
 <script>
-import { useStore } from "vuex";
+import { useAuthStore, useAppStore } from "@/stores";
 import { useRouter } from "vue-router";
 import { computed } from "vue";
 export default {
   setup() {
     const router = useRouter();
-    const store = useStore();
+    const authStore = useAuthStore();
+    const appStore = useAppStore();
 
     return {
       logout: async () => {
-        await store.dispatch("auth/logout");
+        await authStore.logout();
         router.push("/auth");
       },
-      openSidebar: () => store.commit("openSidebar"),
+      openSidebar: () => appStore.openSidebar(),
     };
   },
 };

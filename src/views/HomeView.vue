@@ -5,12 +5,12 @@ import RequestTable from "@/components/ui/Request/RequestTable.vue";
 import RequestModal from "@/components/ui/Modal/RequestModal.vue";
 import RequestFilter from "@/components/ui/Request/RequestFilter.vue";
 import { ref, computed, onMounted, watch } from "vue";
-import { useStore } from "vuex";
+import { useRequestStore } from "@/stores";
 
 const modal = ref(false);
-const store = useStore();
+const requestStore = useRequestStore();
 const requests = computed(() =>
-  store.getters["request/requests"]
+  requestStore.requests
     .filter((request) =>
       filter.value.name
         ? request.fio.toLowerCase().includes(filter.value.name.toLowerCase())
@@ -25,7 +25,7 @@ const filter = ref([]);
 
 onMounted(async () => {
   loading.value = true;
-  await store.dispatch("request/load");
+  await requestStore.load();
   loading.value = false;
 });
 

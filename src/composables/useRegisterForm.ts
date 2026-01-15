@@ -1,11 +1,10 @@
 import * as yup from "yup";
 import { useField, useForm } from "vee-validate";
-import { useStore } from "vuex";
+import { useAuthStore } from "@/stores";
 import { useRouter } from "vue-router";
-import type { RootState } from "@/store";
 
 export function useRegisterForm() {
-  const store = useStore<RootState>();
+  const authStore = useAuthStore();
   const router = useRouter();
   const { handleSubmit, isSubmitting } = useForm();
   const MIN_LENGTH = 6;
@@ -35,7 +34,7 @@ export function useRegisterForm() {
   );
   const onSubmit = handleSubmit(async (values: any) => {
     try {
-      await store.dispatch("auth/register", values);
+      await authStore.register(values);
       router.push("/");
     } catch (error) {}
   });

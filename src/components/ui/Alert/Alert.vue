@@ -6,19 +6,19 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useStore } from "vuex";
+import { useAppStore } from "@/stores";
 import { computed } from "vue";
-const store = useStore();
+const appStore = useAppStore();
 
 const closeAlert = () => {
-  store.dispatch("clearMessage");
+  appStore.clearMessage();
 };
 const TITLE_MAP = {
   danger: "Ошибка",
   success: "Успех",
   info: "Информация",
 };
-const message = computed(() => store.state.message);
+const message = computed(() => appStore.message);
 const title = computed(
   () =>
     message?.value?.type &&

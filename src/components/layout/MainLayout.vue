@@ -18,8 +18,8 @@
 import Navbar from "../ui/Navbar/Navbar.vue";
 import Alert from "../ui/Alert/Alert.vue";
 import Sidebar from "../ui/Sidebar/Sidebar.vue";
-import { useStore } from "vuex";
+import { useAppStore } from "@/stores";
 import { computed } from "vue";
-const store = useStore();
-const message = computed(() => store.state.message);
+const appStore = useAppStore();
+const message = computed(() => appStore.message);
 </script>

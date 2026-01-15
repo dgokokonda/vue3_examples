@@ -40,7 +40,7 @@ Vue 3 приложение для управления заявками с си�
 
 ### Требования
 
-- Node.js 18+ 
+- Node.js 18+
 - npm или yarn
 
 ### Установка зависимостей
@@ -147,7 +147,7 @@ src/
 - [Vue 3 Documentation](https://vuejs.org/)
 - [Vite Configuration Reference](https://vite.dev/config/)
 - [Vue Router Documentation](https://router.vuejs.org/)
-- [Vuex Documentation](https://vuex.vuejs.org/)
+<!-- - [Vuex Documentation](https://vuex.vuejs.org/) -->
 
 ## 📝 Лицензия
 

@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import "@/assets/styles/main.scss";
 import router from "./router";
-import store from "./store";
+import pinia from "./stores";
 import * as VueVirtualScroller from "vue-virtual-scroller";
 import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
 import { mask } from "vue-the-mask";
@@ -22,4 +22,4 @@ const VueVirtualScrollerPlugin = {
   },
 };
 
-app.use(store).use(router).use(VueVirtualScrollerPlugin).mount("#app");
+app.use(pinia).use(router).use(VueVirtualScrollerPlugin).mount("#app");

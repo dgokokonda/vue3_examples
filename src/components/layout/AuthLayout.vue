@@ -19,7 +19,7 @@
 <template>
   <div class="container">
     <div class="card">
-      <Alert v-if="message" />
+      <Alert v-if="message" :message="message" />
       <router-view></router-view>
     </div>
   </div>
@@ -27,15 +27,16 @@
 <script setup lang="ts">
 // @ts-ignore - Vue SFC default export
 import Alert from "../ui/Alert/Alert.vue";
-import { useStore } from "vuex";
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { handleError } from "@/utils/error";
-const store = useStore();
-const message = computed(() => store.state.message);
+import { useAppStore } from "@/stores";
+const appStore = useAppStore();
+const message = computed(() => appStore.message);
 const router = useRoute();
+
 if (router.query.message) {
-  store.dispatch("setMessage", {
+  appStore.setMessage({
     value: handleError(router.query.message as string),
     type: "warning",
   });

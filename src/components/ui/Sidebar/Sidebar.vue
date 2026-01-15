@@ -13,12 +13,12 @@
 </template>
 <script setup lang="ts">
 import { computed } from "vue";
-import { useStore } from "vuex";
+import { useAppStore } from "@/stores";
 
-const store = useStore();
-const sidebar = computed(() => store.state.sidebar);
+const appStore = useAppStore();
+const sidebar = computed(() => appStore.sidebar);
 
-const close = () => store.commit("closeSidebar");
+const close = () => appStore.closeSidebar();
 </script>
 <style>
 .sidebar {

@@ -60,7 +60,7 @@
   </Transition>
 </template>
 <script setup lang="ts">
-import { useStore } from "vuex";
+import { useRequestStore } from "@/stores";
 import { useRequestForm } from "@/composables/useRequestForm";
 
 interface Props {
@@ -70,9 +70,9 @@ const props = defineProps<Props>();
 const emit = defineEmits<{
   created: [];
 }>();
-const store = useStore();
+const requestStore = useRequestStore();
 const submit = async (values: any) => {
-  await store.dispatch("request/create", values);
+  await requestStore.create(values);
   emit("created");
 };
 const {
