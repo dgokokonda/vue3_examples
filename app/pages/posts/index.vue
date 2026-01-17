@@ -12,7 +12,7 @@
       <div class="error" v-if="error">{{ error }}</div>
       <div v-if="status === 'success'" class=""> -->
       <div
-        v-for="post in posts"
+        v-for="post in postStore.posts"
         class="bg-white w-full p-4 border border-gray-200 mb-4"
       >
         <h3 class="mb-2 text-lg text-gray-700">
@@ -28,7 +28,10 @@
         <NuxtLink :to="{ name: 'posts-id-edit', params: { id: post.id } }"
           >Edit</NuxtLink
         >
-        <button @click="deletePost(post.id)" class="text-red-600 ml-4">
+        <button
+          @click="postStore.deletePost(post.id)"
+          class="text-red-600 ml-4"
+        >
           Delete
         </button>
       </div>
@@ -41,7 +44,6 @@ definePageMeta({
   layout: "main",
 });
 
-const { getPosts, deletePost } = usePost();
-
-const posts = await getPosts();
+const postStore = usePostStore();
+await postStore.getPosts();
 </script>

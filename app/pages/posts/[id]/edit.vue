@@ -1,7 +1,7 @@
 <template>
   <div class="</div>">
     <h1>Edit post</h1>
-    <form  @submit.prevent="editPost" class="form">
+    <form @submit.prevent="postStore.editPost" class="form">
       <div class="mb-4">
         <NuxtLink
           :to="{ name: 'posts' }"
@@ -12,7 +12,7 @@
       <div class="field-item">
         <label for="title">Title</label>
         <input
-          v-model="post.title"
+          v-model="postStore.post.title"
           placeholder="title"
           type="text"
           id="title"
@@ -21,13 +21,13 @@
       <div class="field-item">
         <label for="content">Content</label>
         <textarea
-          v-model="post.content"
+          v-model="postStore.post.content"
           placeholder="content"
           id="content"
         ></textarea>
       </div>
       <div class="btn">
-        <a @click.prevent="editPost" href="#">Edit</a>
+        <a @click.prevent="postStore.editPost" href="#">Edit</a>
       </div>
     </form>
   </div>
@@ -36,7 +36,6 @@
 definePageMeta({
   layout: "main",
 });
-
-const { editPost, getPost } = usePost();
-const post = await getPost() 
+const postStore = usePostStore();
+await postStore.getPost(useRoute());
 </script>

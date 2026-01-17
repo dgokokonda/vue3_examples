@@ -21,5 +21,5 @@ export default defineNuxtConfig({
   //     "/posts/**": { swr: 60 }, // кэш на 60 сек
   //   },
   // },
-  modules: ["@nuxtjs/tailwindcss"],
+  modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt"],
 });

@@ -1,7 +1,7 @@
 <template>
   <div class="mx-auto w-1/2 p-4">
     <h4>Create post</h4>
-    <form @submit="addPost(post)" class="form">
+    <form @submit="postStore.addPost" class="form">
       <div class="mb-4">
         <NuxtLink
           :to="{ name: 'posts' }"
@@ -12,7 +12,7 @@
       <div class="field-item">
         <label for="title">Title</label>
         <input
-          v-model="post.title"
+          v-model="postStore.post.title"
           placeholder="title"
           type="text"
           id="title"
@@ -21,27 +21,27 @@
       <div class="field-item">
         <label for="content">Content</label>
         <textarea
-          v-model="post.content"
+          v-model="postStore.post.content"
           placeholder="content"
           id="content"
         ></textarea>
       </div>
       <div class="btn">
-        <a @click.prevent="addPost(post)" href="#">Create</a>
+        <a @click.prevent="postStore.addPost" href="#">Create</a>
       </div>
     </form>
   </div>
 </template>
 <script setup>
-import { reactive } from "vue";
+import { onMounted } from "vue";
 
 definePageMeta({
   layout: "main",
 });
 
-const post = reactive({
-  title: "",
-  content: "",
+const postStore = usePostStore();
+
+onMounted(() => {
+  postStore.post = {};
 });
-const { addPost } = usePost();
 </script>

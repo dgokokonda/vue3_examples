@@ -8,9 +8,9 @@
       >
     </div>
     <h1><b>Post card</b></h1>
-    <div v-if="post">
-      <h3 class="mb-2 text-lg text-gray-700">{{ post.title }}</h3>
-      <p class="text-xs text-gray-500">{{ post.content }}</p>
+    <div v-if="postStore?.post">
+      <h3 class="mb-2 text-lg text-gray-700">{{ postStore.post.title }}</h3>
+      <p class="text-xs text-gray-500">{{ postStore.post.content }}</p>
     </div>
   </div>
 </template>
@@ -18,8 +18,8 @@
 definePageMeta({
   layout: "main",
 });
+import { useRoute } from "nuxt/app";
+const postStore = usePostStore();
 
-const { getPost } = usePost();
-
-const post = await getPost();
+await postStore.getPost(useRoute());
 </script>
