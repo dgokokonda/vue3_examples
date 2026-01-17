@@ -1,0 +1,1 @@
+<template>Users list</template>
