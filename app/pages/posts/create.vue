@@ -1,7 +1,7 @@
 <template>
   <div class="mx-auto w-1/2 p-4">
     <h4>Create post</h4>
-    <form @submit="storePost" class="form">
+    <form @submit="addPost(post)" class="form">
       <div class="mb-4">
         <NuxtLink
           :to="{ name: 'posts' }"
@@ -27,7 +27,7 @@
         ></textarea>
       </div>
       <div class="btn">
-        <a @click.prevent="storePost" href="#">Create</a>
+        <a @click.prevent="addPost(post)" href="#">Create</a>
       </div>
     </form>
   </div>
@@ -43,23 +43,5 @@ const post = reactive({
   title: "",
   content: "",
 });
-const pending = ref(false);
-const storePost = async () => {
-  try {
-    pending.value = true;
-    const res = await $fetch("http://localhost:3001/posts", {
-      method: "POST",
-      body: JSON.stringify(post),
-      // headers: {
-      //   "Content-Type": "application/json"
-      // }
-    });
-    console.log(res);
-    Object.assign(post, { title: "", content: "" });
-  } catch (error) {
-    console.error(error);
-  } finally {
-    pending.value = false;
-  }
-};
+const { addPost } = usePost();
 </script>

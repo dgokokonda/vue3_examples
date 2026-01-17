@@ -8,17 +8,18 @@
       >
     </div>
     <h1><b>Post card</b></h1>
-    <h3 class="mb-2 text-lg text-gray-700">{{ post.title }}</h3>
-    <p class="text-xs text-gray-500">{{ post.content }}</p>
+    <div v-if="post">
+      <h3 class="mb-2 text-lg text-gray-700">{{ post.title }}</h3>
+      <p class="text-xs text-gray-500">{{ post.content }}</p>
+    </div>
   </div>
 </template>
 <script setup>
-import { useRoute } from "nuxt/app";
 definePageMeta({
   layout: "main",
 });
 
-const route = useRoute();
-const postId = route.params.id;
-const { data: post } = await useFetch(`http://localhost:3001/posts/${postId}`);
+const { getPost } = usePost();
+
+const post = await getPost();
 </script>
