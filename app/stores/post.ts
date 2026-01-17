@@ -7,6 +7,7 @@ interface PostType {
 interface PostsState {
   posts: PostType[];
   post: Partial<PostType>;
+  _executePosts?: () => Promise<void>;
 }
 
 export const usePostStore = defineStore("postStore", {
@@ -18,13 +19,15 @@ export const usePostStore = defineStore("postStore", {
   },
   actions: {
     async getPosts() {
-      const { data, error } = await useFetch<PostType[]>(
+      const { data, error, execute } = await useFetch<PostType[]>(
         "http://localhost:3001/posts",
       );
 
       if (data.value) {
         this.posts = data.value;
       }
+
+      this._executePosts = execute;
     },
     async getPost(route: { params: { id: string } } | undefined) {
       if (!route?.params.id) return this.post;
@@ -64,6 +67,9 @@ export const usePostStore = defineStore("postStore", {
       });
 
       this.posts = this.posts.filter(({ id }) => id !== postId);
+    },
+    async executePosts() {
+      if (this._executePosts) await this._executePosts();
     },
   },
 });

@@ -8,6 +8,7 @@
       >
     </div>
     <div>
+      <div class="cursor-pointer" @click="postStore.executePosts">EXECUTE</div>
       <!-- <span v-if="pendingPosts">Loading posts...</span>
       <div class="error" v-if="error">{{ error }}</div>
       <div v-if="status === 'success'" class=""> -->
@@ -42,8 +43,34 @@
 <script setup>
 definePageMeta({
   layout: "main",
+  // middleware: "auth",
 });
+
+// utils:
+// console.log(getRandomNumber());
+
+// plugin:
+// const { $hello } = useNuxtApp();
+// $hello("test11");
+// console.log(useNuxtApp());
+
+// api plugin:
+// const { $apiClient } = useNuxtApp();
+// const { data: posts, pending, refresh } = await $apiClient.getPostsAsync();
+// console.log(posts.value);
 
 const postStore = usePostStore();
 await postStore.getPosts();
 </script>
+<style scoped>
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
+</style>

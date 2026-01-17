@@ -11,6 +11,7 @@ export default defineNuxtConfig({
       },
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
+    pageTransition: { name: "page", mode: "out-in" },
   },
   routeRules: {
     // "/posts": { ssr: false }, // выключен ssr, рендер и кэширование только на клиенте
@@ -22,4 +23,5 @@ export default defineNuxtConfig({
   //   },
   // },
   modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt"],
+  css: ["@/assets/css/styles.scss"],
 });
