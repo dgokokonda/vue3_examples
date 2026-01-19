@@ -19,6 +19,7 @@ import {
   isMultiSelect,
   isNumberField,
   isCheckboxField,
+  hasValue,
 } from "~/utils/fieldGuards";
 interface Props {
   fields: FieldItem[];
@@ -29,15 +30,25 @@ const emit = defineEmits<{
   // 'submit':
 }>();
 const form = reactive<any>({});
+const fieldDefaults = computed(() => {
+  const defaults: Record<string, any> = {};
+
+  props.fields.forEach((field) => {
+    if (isMultiSelect(field) || isCheckboxField(field)) {
+      defaults[field.name] = [];
+    } else if (isNumberField(field)) {
+      defaults[field.name] = 0;
+    } else {
+      defaults[field.name] = "";
+    }
+  });
+
+  return defaults;
+});
 const submit = () => {};
 const setValue = (val: any, field: Field) => {
-  const defaultValue =
-    isMultiSelect(field) || isCheckboxField(field)
-      ? []
-      : isNumberField(field)
-        ? 0
-        : "";
-  if (field.name) form[field.name] = val || defaultValue;
+  if (field.name)
+    form[field.name] = hasValue(field) ? val : fieldDefaults.value[field.name];
 };
 
 onMounted(() => {

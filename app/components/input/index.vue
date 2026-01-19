@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Field } from "../person-form.types";
+import { getInputType } from "~/utils/fieldGuards";
 // import { computed } from "vue";
 
 interface Props {
@@ -31,9 +32,12 @@ const formValue = computed({
   },
 });
 
-const inputType = computed(() =>
-  props.field.type !== "number" ? "text" : props.field.type,
-);
+const inputType = computed(() => {
+  // Используем type guard для безопасной проверки
+  if (isPhoneField(props.field)) return "tel";
+  if (isNumberField(props.field)) return "number";
+  return getInputType(props.field); // Функция из fieldGuards
+});
 
 function handleInput(event: Event) {
   const value = (event.target as HTMLInputElement).value;
@@ -54,6 +58,7 @@ function handleInput(event: Event) {
       :id="field.name"
       @input="handleInput"
     />
+    <!-- ❌ v-imask может не работать на сервере -->
     <ClientOnly v-else>
       <input
         v-bind="$attrs"

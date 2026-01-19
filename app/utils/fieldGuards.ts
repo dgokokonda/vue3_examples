@@ -33,7 +33,9 @@ export const hasDefinedType = (
  * Проверяет, что у поля есть значение
  */
 export const hasValue = (field: Field): field is Field & { value: any } => {
-  return "value" in field && field.value !== undefined;
+  return Array.isArray(field?.value)
+    ? !!field.value.length
+    : Boolean(field?.value);
 };
 
 // ==================== ПРОВЕРКИ КОНКРЕТНЫХ ТИПОВ ====================
