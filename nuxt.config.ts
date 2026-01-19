@@ -24,4 +24,5 @@ export default defineNuxtConfig({
   // },
   modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt"],
   css: ["@/assets/css/styles.scss"],
+  plugins: ["./plugins/imask.client.ts"],
 });

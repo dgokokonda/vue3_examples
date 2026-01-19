@@ -14,6 +14,9 @@
       <NuxtLink class="text-blue-600 hover:text-blue-800" to="/posts"
         >Posts</NuxtLink
       >
+      <NuxtLink class="text-blue-600 hover:text-blue-800" to="/counter"
+        >Counter</NuxtLink
+      >
     </div>
     <NuxtLayout>
       <NuxtPage />

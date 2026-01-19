@@ -1,5 +1,9 @@
 # Nuxt Minimal Starter
 
+<!-- Up Server -->
+
+npx json-server --watch db.json --port 3001
+
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ## Setup
