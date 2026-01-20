@@ -34,12 +34,14 @@ const fieldDefaults = computed(() => {
   const defaults: Record<string, any> = {};
 
   props.fields.forEach((field) => {
+    const fieldName = (field as Field).name;
+
     if (isMultiSelect(field) || isCheckboxField(field)) {
-      defaults[field.name] = [];
+      defaults[fieldName] = [];
     } else if (isNumberField(field)) {
-      defaults[field.name] = 0;
+      defaults[fieldName] = 0;
     } else {
-      defaults[field.name] = "";
+      defaults[fieldName] = "";
     }
   });
 
@@ -47,14 +49,21 @@ const fieldDefaults = computed(() => {
 });
 const submit = () => {};
 const setValue = (val: any, field: Field) => {
-  if (field.name)
-    form[field.name] = hasValue(field) ? val : fieldDefaults.value[field.name];
+  const fieldName = field.name;
+  if (fieldName) {
+    form[fieldName] = hasValue(field) ? val : fieldDefaults.value[fieldName];
+  }
 };
 
-onMounted(() => {
-  props.fields.forEach((field: Field) => {
-    form[field.name] = field.value;
-  });
-  console.log(form);
+// pre-render
+props.fields.forEach((field: Field) => {
+  setValue(field.value, field);
 });
+
+// with async fetch data
+// onMounted(() => {
+//   props.fields.forEach((field: Field) => {
+//     setValue(field.value, field);
+//   });
+// });
 </script>
