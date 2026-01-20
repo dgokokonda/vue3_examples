@@ -28,6 +28,16 @@ export interface TextField extends BaseField {
   maxlength?: number;
 }
 
+// Number field
+export interface NumberField extends BaseField {
+  type: "number";
+  value: number;
+  // options?: undefined;
+  min?: number;
+  // mask?: undefined;
+  // maxlength?: undefined;
+}
+
 // Enum field
 export interface EnumField extends BaseField {
   type: "enum";
@@ -44,16 +54,6 @@ export interface MultiEnumField extends BaseField {
   value: Array<{ id: string; name: string }>;
   options: Array<{ id: string; name: string }>;
   // min?: undefined;
-  // mask?: undefined;
-  // maxlength?: undefined;
-}
-
-// Number field
-export interface NumberField extends BaseField {
-  type: "number";
-  value: number;
-  // options?: undefined;
-  min?: number;
   // mask?: undefined;
   // maxlength?: undefined;
 }

@@ -4,7 +4,7 @@
       :is="getComponent()"
       :id="field.name"
       :field="field"
-      :form-value="formValue"
+      :form-value="formattedValue"
       @update:formValue="handleUpdate"
     />
   </div>
@@ -51,6 +51,10 @@ const getComponent = () => {
 const handleUpdate = (value: any) => {
   emit("update:value", { value, field: props.field });
 };
+
+const formattedValue = computed(() =>
+  getComponent() === Input ? String(props.formValue) : props.formValue,
+);
 
 // const selectType = computed(() => {
 //   const field = props.field as any; // Временное решение
