@@ -1,5 +1,8 @@
 <template>
   <div class="select-wrapper">
+    <div v-if="isMultiple && selectedVals" class="text-green-500">
+      Selected: {{ selectedVals }}
+    </div>
     <select
       v-bind="$attrs"
       :name="field.name"
@@ -43,6 +46,7 @@ const getOption = (key: string) => {
   if (!options) return;
   return options.find(({ id }) => id === key);
 };
+let selectedVals = ref("");
 
 const formValue = computed({
   get: () => {
@@ -84,4 +88,9 @@ const isMultiple = computed(() => isMultiEnumField(props.field));
 function handleChange(event: Event) {
   // console.log(event, formValue.value);
 }
+
+watchEffect(() => {
+  if (isMultiple.value && Array.isArray(props.formValue))
+    selectedVals.value = props.formValue.map(({ name }) => name).join(" ");
+});
 </script>

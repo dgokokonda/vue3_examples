@@ -1,4 +1,10 @@
+// scss params
 $color: #26e18d;
+
+:root {
+  // css params
+  --error-color: #e55151;
+}
 
 p:hover {
   color: $color;

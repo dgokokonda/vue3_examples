@@ -1,6 +1,11 @@
 <template>
   <div class="form">
-    <Form :fields="fields" form-name="Person Form"></Form>
+    <Form
+      :fields="fields"
+      form-name="Person Form"
+      @validation="onValidate"
+      @submit="onSubmit"
+    ></Form>
   </div>
 </template>
 <script setup lang="ts">
@@ -100,4 +105,12 @@ const fields = reactive<Field[]>([
     type: "radio",
   },
 ]);
+
+const onSubmit = (data: any, valid: boolean) => {
+  console.log("submit", data, valid);
+};
+
+const onValidate = (valid: boolean, fields: Record<string, string>) => {
+  console.log("validate", valid, fields);
+};
 </script>

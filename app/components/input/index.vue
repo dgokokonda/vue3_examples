@@ -43,8 +43,6 @@ const inputType = computed(() => {
   if (isNumberField(props.field)) return "number";
   return getInputType(props.field); // Функция из fieldGuards
 });
-
-// валидация по min свойству*
 </script>
 
 <template>

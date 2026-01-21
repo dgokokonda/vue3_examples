@@ -30,7 +30,7 @@ interface Props {
 }
 const props = defineProps<Props>();
 const emit = defineEmits<{
-  "update:value": [value: any];
+  updateForm: [value: any];
 }>();
 
 const form = reactive({});
@@ -49,7 +49,7 @@ const getComponent = () => {
 };
 
 const handleUpdate = (value: any) => {
-  emit("update:value", { value, field: props.field });
+  emit("updateForm", { value, field: props.field });
 };
 
 const formattedValue = computed(() =>
