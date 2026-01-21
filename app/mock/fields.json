@@ -1,0 +1,127 @@
+[
+  {
+    "id": "1",
+    "name": "fio",
+    "label": "FIO",
+    "value": "full name",
+    "required": true,
+    "type": "text"
+  },
+  {
+    "id": "2",
+    "name": "phone",
+    "label": "Phone",
+    "value": "+79512223344",
+    "required": true,
+    "type": "phone",
+    "mask": "+{7} (000) 000-00-00"
+  },
+  {
+    "id": "3",
+    "name": "post",
+    "label": "Post",
+    "type": "enum",
+    "required": true,
+    "value": "developer",
+    "options": {
+      "developer": "Developer",
+      "writer": "Writer",
+      "actor": "Actor",
+      "producer": "Producer",
+      "housewife": "Housewife"
+    }
+  },
+  {
+    "id": "4",
+    "name": "hobby",
+    "label": "Hobby",
+    "type": "multienum",
+    "required": false,
+    "value": [
+      {
+        "id": "music",
+        "name": "Music"
+      },
+      {
+        "id": "dances",
+        "name": "Dances"
+      },
+      {
+        "id": "trekking",
+        "name": "Trekking"
+      }
+    ],
+    "options": [
+      {
+        "id": "music",
+        "name": "Music"
+      },
+      {
+        "id": "cleaning",
+        "name": "Cleaning"
+      },
+      {
+        "id": "dances",
+        "name": "Dances"
+      },
+      {
+        "id": "trekking",
+        "name": "Trekking"
+      },
+      {
+        "id": "programming",
+        "name": "Proggramming"
+      },
+      {
+        "id": "painting",
+        "name": "Painting"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "name": "age",
+    "label": "Age",
+    "value": 33,
+    "required": false,
+    "min": 18,
+    "type": "number"
+  },
+  {
+    "id": "6",
+    "name": "about_me",
+    "label": "About me",
+    "value": "I am a human and I love peace and God",
+    "maxlength": 500,
+    "required": false,
+    "type": "textarea"
+  },
+  {
+    "id": "7",
+    "name": "languages",
+    "label": "I know languages",
+    "required": false,
+    "options": {
+      "english": "English",
+      "russian": "Russian",
+      "french": "French"
+    },
+    "value": [
+      "english",
+      "russian"
+    ],
+    "type": "checkbox"
+  },
+  {
+    "id": "8",
+    "name": "sex",
+    "label": "Sex",
+    "options": [
+      "male",
+      "female"
+    ],
+    "value": "male",
+    "required": true,
+    "type": "radio"
+  }
+]
