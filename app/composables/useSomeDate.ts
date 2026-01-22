@@ -1,23 +1,26 @@
 export function useSomeDate() {
   const someDate = ref<string>("");
   const isLoading = ref(true);
-  // const obj = reactive<Record<string, any>>({});
+  // const obj = ref<Record<string, any>>({ some: 8, d: { a: 1 } });
+  // const obj2 = reactive<Record<string, any>>({});
 
-  // setTimeout(() => (obj.some = 1), 2000);
-  // setTimeout(() => (obj.some = 10), 5000);
+  // setTimeout(() => (obj.value.some = 1), 2000);
+  // setTimeout(() => (obj.value.d.a = 11), 4000);
+  // setTimeout(() => (obj.value.some = 10), 5000);
+  // setTimeout(() => (obj.value.a = 10), 5000);
 
   // watch(
   //   [obj],
   //   (newVal) => {
   //     // Засчет immediate: false вызывается только при изменении значения (иначе + при создании компонента)
-  //     console.log(1, newVal[0].some);
+  //     console.log(1, JSON.stringify(newVal[0]));
   //   },
-  //   { immediate: false },
+  //   { deep: true }, // для глубокой реактивности ref()
   // );
 
   // watchEffect(() => {
   //   // вызывается при создании компонента и изменении значения; повлиять нельзя.
-  //   /* if (obj.some) */ console.log(2, obj.some);
+  //   /* if (obj.some) */ console.log(2, JSON.stringify(obj.value));
   // });
 
   const { data, error, refresh } = useFetch<{ datetime: string }>(
