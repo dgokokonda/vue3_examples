@@ -19,6 +19,13 @@ export const personFormSchema = toTypedSchema(
         "Неверный формат телефона. Пример: +7 (999) 123-45-67",
       ),
 
+    birthdate: yup
+      .date()
+      .required("Дата рождения обязательна")
+      .min(new Date("1970-01-01"), "Дата не может быть раньше 01.01.1970")
+      .max(new Date(), "Дата не может быть позже текущей")
+      .typeError("Введите корректную дату"),
+
     post: yup.string().required("Нужно заполнить должность"),
     // .oneOf(
     //   ["Developer", "Writer", "Actor", "Producer", "Housewife"],

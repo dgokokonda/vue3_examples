@@ -14,11 +14,7 @@ type UserFormEmits = {
   validation: [isValid: boolean, errors: Record<string, string>];
 };
 
-export const useUserForm = (
-  fields: Field[],
-  formName: string,
-  emit: EmitFn<UserFormEmits>,
-) => {
+export const useUserForm = (fields: Field[], emit: EmitFn<UserFormEmits>) => {
   const form = reactive<Record<string, any>>({});
   const formErrors = ref<Record<string, string>>({});
   const isSubmitting = ref(false);

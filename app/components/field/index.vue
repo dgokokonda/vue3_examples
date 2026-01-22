@@ -17,12 +17,14 @@ import {
   isCheckboxField,
   isRadioField,
   isTextareaField,
+  isDateField,
 } from "~/utils/fieldGuards";
 import Input from "../input/index.vue";
 import Select from "../select/index.vue";
 import Textarea from "../textarea/index.vue";
 import CheckboxGroup from "../checkbox/index.vue";
 import RadioGroup from "../radio/index.vue";
+import Datepicker from "../datepicker/index.vue";
 
 interface Props {
   field: Field;
@@ -45,6 +47,7 @@ const getComponent = () => {
   if (isCheckboxField(props.field)) return CheckboxGroup;
   if (isRadioField(props.field)) return RadioGroup;
   if (isTextareaField(props.field)) return Textarea;
+  if (isDateField(props.field)) return Datepicker;
   return Input;
 };
 

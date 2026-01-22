@@ -43,6 +43,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   submit: [formData: Record<string, any>, isValid: boolean];
+  validation: [valid: boolean, fields: Record<string, string>];
 }>();
 
 const {
@@ -52,7 +53,7 @@ const {
   submitError,
   handleSubmitWithValidation,
   setValue,
-} = useUserForm(props.fields, props.formName, emit);
+} = useUserForm(props.fields, emit);
 </script>
 <style scoped lang="scss">
 .error ::v-deep input,

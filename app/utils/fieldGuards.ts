@@ -9,6 +9,7 @@ import type {
   TextareaField,
   CheckboxField,
   RadioField,
+  DateField,
 } from "~/components/person-form.types";
 
 // ==================== БАЗОВЫЕ ПРОВЕРКИ ====================
@@ -81,6 +82,13 @@ export const isNumberField = (field: Field): field is NumberField => {
  */
 export const isTextareaField = (field: Field): field is TextareaField => {
   return hasDefinedType(field) && field.type === "textarea";
+};
+
+/**
+ * Проверяет, что поле является текстовой областью (textarea)
+ */
+export const isDateField = (field: Field): field is DateField => {
+  return hasDefinedType(field) && field.type === "datetime";
 };
 
 /**
@@ -387,6 +395,7 @@ export default {
   isTextareaField,
   isCheckboxField,
   isRadioField,
+  isDateField,
 
   // Проверки свойств
   hasOptions,

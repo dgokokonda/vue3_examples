@@ -68,6 +68,17 @@ export interface TextareaField extends BaseField {
   // mask?: undefined;
 }
 
+// Datepicker field
+export interface DateField extends BaseField {
+  type: "datetime";
+  value: string;
+  max?: string;
+  min?: string;
+  // options?: undefined;
+  // min?: undefined;
+  // mask?: undefined;
+}
+
 // Checkbox field (multiple select)
 export interface CheckboxField extends BaseField {
   type: "checkbox";
@@ -97,7 +108,8 @@ export type Field =
   | NumberField
   | TextareaField
   | CheckboxField
-  | RadioField;
+  | RadioField
+  | DateField;
 
 // FieldItem - используем тот же тип Field
 export type FieldItem = Field;
