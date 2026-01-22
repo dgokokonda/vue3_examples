@@ -1,6 +1,24 @@
 export function useSomeDate() {
   const someDate = ref<string>("");
   const isLoading = ref(true);
+  // const obj = reactive<Record<string, any>>({});
+
+  // setTimeout(() => (obj.some = 1), 2000);
+  // setTimeout(() => (obj.some = 10), 5000);
+
+  // watch(
+  //   [obj],
+  //   (newVal) => {
+  //     // Засчет immediate: false вызывается только при изменении значения (иначе + при создании компонента)
+  //     console.log(1, newVal[0].some);
+  //   },
+  //   { immediate: false },
+  // );
+
+  // watchEffect(() => {
+  //   // вызывается при создании компонента и изменении значения; повлиять нельзя.
+  //   /* if (obj.some) */ console.log(2, obj.some);
+  // });
 
   const { data, error, refresh } = useFetch<{ datetime: string }>(
     "http://localhost:3001/config",
@@ -91,7 +109,7 @@ export function useSomeDate() {
   onMounted(() => {
     // Если данные не загрузились через SSR, загружаем на клиенте
     if (!data.value && !error.value) {
-      refresh();
+      // refresh(); // без refresh работает загрузка
     }
   });
 
