@@ -29,4 +29,10 @@ const counter = ref(0);
 // watch(inputValue, (newVal) => {
 //   console.log("Значение изменилось:", newVal);
 // });
+
+const theme = useState("theme"); // light
+setTimeout(() => {
+  theme.value = "dark"; // меняем глобальную переменную (поменяется глобально)
+  // console.log(theme.value);
+}, 3000);
 </script>

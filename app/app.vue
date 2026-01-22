@@ -27,5 +27,10 @@
 // import { ref } from "vue";
 console.log("test", useNuxtApp());
 
+const globalTheme = useState("theme", () => "light");
+// setTimeout(() => {
+//   console.log(2, globalTheme.value); // dark, т.к. изменили в другом компоненте
+// }, 10000);
+
 // const title = ref("Приложение на Nuxt");
 </script>
