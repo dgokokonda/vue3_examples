@@ -77,3 +77,5 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+<!-- API прогноза погоды ( как идея кодинга ): https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true -->
