@@ -20,6 +20,10 @@ definePageMeta({
 });
 import { useRoute } from "nuxt/app";
 const postStore = usePostStore();
+const route = useRoute();
 
 await postStore.getPost(useRoute());
+
+// /posts/2?param=1
+// console.log(11, route.query.param); // 1
 </script>
