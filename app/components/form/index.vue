@@ -1,9 +1,22 @@
 <template>
   <form @submit.prevent="handleSubmitWithValidation" novalidate>
     <p>{{ formName }}</p>
-    <div v-if="submitError" class="error-msg text-red-700">
-      {{ submitError }}
-    </div>
+    <ClientOnly>
+      <div v-if="someDate">
+        <span>Рандомная дата с сервера: {{ formattedDate }}</span>
+        <input
+          type="date"
+          :value="someDate"
+          :key="someDate || 'date-input'"
+          @input="changeDate"
+        />
+      </div>
+      <template #fallback>
+        <div>
+          <span>Загрузка даты...</span>
+        </div>
+      </template>
+    </ClientOnly>
     <div class="fields">
       <div
         v-for="field in fields"
@@ -54,6 +67,8 @@ const {
   handleSubmitWithValidation,
   setValue,
 } = useUserForm(props.fields, emit);
+
+const { someDate, formattedDate, changeDate } = useSomeDate();
 </script>
 <style scoped lang="scss">
 .error ::v-deep input,
