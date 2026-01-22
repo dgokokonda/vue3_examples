@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import type { BaseField, DateField } from "../person-form.types";
+import { format, parseISO, isValid, formatISO, startOfDay } from "date-fns";
+import { ru } from "date-fns/locale";
 
 interface Props {
   field: BaseField & DateField;
-  formValue: string;
+  formValue: string; // Ожидается ISO строка "YYYY-MM-DD" или "YYYY-MM-DDTHH:mm:ssZ"
 }
 
 const props = defineProps<Props>();
@@ -13,40 +15,75 @@ const emit = defineEmits<{
   change: [event: Event];
 }>();
 
-//  отключить автоматическое наследование атрибутов компонентом, то это можно сделать с помощью опции inheritAttrs: false
 defineOptions({
   inheritAttrs: false,
 });
 
-const formValue = computed({
-  get: () => props.formValue, //String(props.formValue || ""),
+const inputValue = computed({
+  get: () => {
+    if (!props.formValue) return "";
+
+    const date = parseISO(props.formValue);
+    if (!isValid(date)) return "";
+    return format(date, "yyyy-MM-dd");
+  },
   set: (value: string) => {
-    emit("update:formValue", value);
+    if (!value) {
+      emit("update:formValue", "");
+      return;
+    }
+    const date = startOfDay(new Date(value + "T00:00:00"));
+    emit("update:formValue", formatISO(date, { representation: "date" }));
   },
 });
 
-const dateObject = computed(() =>
-  props.formValue ? new Date(props.formValue) : null,
-);
+const minDate = computed(() => {
+  if (!props.field.min) return undefined;
 
-const formattedDate = computed(
-  () => dateObject.value?.toLocaleDateString("ru-RU") || "",
-);
+  const date = parseISO(props.field.min + "T00:00:00Z");
+  return isValid(date) ? format(date, "yyyy-MM-dd") : undefined;
+});
+
+const maxDate = computed(() => {
+  if (!props.field.max) return undefined;
+
+  const date = parseISO(props.field.max + "T23:59:59.999Z");
+  return isValid(date) ? format(date, "yyyy-MM-dd") : undefined;
+});
+
+const displayDate = computed(() => {
+  if (!props.formValue) return "";
+
+  const date = parseISO(props.formValue);
+  if (!isValid(date)) return "";
+
+  return format(date, "dd.MM.yyyy", { locale: ru });
+});
+
+const dateObject = computed(() => {
+  if (!props.formValue) return null;
+
+  const date = parseISO(props.formValue);
+  return isValid(date) ? date : null;
+});
 </script>
 
 <template>
   <div class="datepicker-wrapper">
     <input
       v-bind="$attrs"
-      v-model="formValue"
+      v-model="inputValue"
       type="date"
       :name="field.name"
       :id="field.name"
       :required="field.required"
-      :min="field.min"
-      :max="field.max"
+      :min="minDate"
+      :max="maxDate"
     />
+
+    <!-- Для отображения форматированной даты -->
+    <div v-if="displayDate && inputValue" class="date-display">
+      {{ displayDate }}
+    </div>
   </div>
 </template>
-
-<style scoped></style>
