@@ -4,7 +4,7 @@ import Page from "@/components/ui/Page/Page.vue";
 import RequestTable from "@/components/ui/Request/RequestTable.vue";
 import RequestModal from "@/components/ui/Modal/RequestModal.vue";
 import RequestFilter from "@/components/ui/Request/RequestFilter.vue";
-import { ref, computed, onMounted, watch } from "vue";
+import { ref, computed, onMounted, watch, provide } from "vue";
 import { useStore } from "vuex";
 
 const modal = ref(false);
@@ -22,9 +22,13 @@ const requests = computed(() =>
 );
 const loading = ref(false);
 const filter = ref({});
+const someString = ref('')
 
 // 1. Создаем ref для дочернего компонента
-const childRef = ref(null)
+let childRef = ref(null)
+
+// проверяем передачу-изменение данных в RequestFilter
+provide('provideParam', someString)
 
 onMounted(async () => {
   loading.value = true;

@@ -11,7 +11,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, watch, computed } from "vue";
+import { ref, watch, computed, inject } from "vue";
 // const props = defineProps<{
 //   modelValue: { name: string; status: string };
 // }>();
@@ -24,6 +24,11 @@ const status = ref("");
 const isActive = computed(() => {
   return name.value || status.value;
 });
+
+const parentString = inject('provideParam')
+ if (parentString) parentString.value = '123'
+// console.log('inject data', parentString.value)
+
 
 watch([name, status], ([newName, newStatus]) => {
   emit("update:modelValue", { name: newName, status: newStatus });
