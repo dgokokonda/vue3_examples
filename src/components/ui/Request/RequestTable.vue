@@ -32,6 +32,7 @@
   </table>
 </template>
 <script setup lang="ts">
+import {ref} from 'vue'
 import { currency } from "@/utils/currency";
 import Status from "@/components/ui/Status/Status.vue";
 interface RequestType {
@@ -49,4 +50,12 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   requests: () => [],
 });
+// определили данные для передачи родителю
+const someData = ref({ test: 'Test' })
+const someFunc = () => console.log('func result', someData.value)
+
+// открываем доступ к этим свойствам/методам родителю HomeView
+defineExpose({
+  someData, someFunc
+})
 </script>

@@ -21,12 +21,20 @@ const requests = computed(() =>
     )
 );
 const loading = ref(false);
-const filter = ref([]);
+const filter = ref({});
+
+// 1. Создаем ref для дочернего компонента
+const childRef = ref(null)
 
 onMounted(async () => {
   loading.value = true;
   await store.dispatch("request/load");
   loading.value = false;
+  // 2. Доступ к данным дочернего компонента
+  childRef.value.someFunc()
+  // изменяем значение переменной
+  childRef.value.someData = { ...childRef.value.someData, prop: 'test' }
+  // console.log(childRef.value.someData) // {"test":"Test","prop":"test"}
 });
 
 watch(filter, (newFilter) => {
@@ -39,16 +47,16 @@ watch(filter, (newFilter) => {
     <template #header>
       <button class="btn primary" @click="modal = true">Создать</button>
     </template>
-    <request-filter v-model="filter" />
-    <request-table v-loading="loading" :requests="requests" />
+    <RequestFilter v-model="filter" />
+    <RequestTable ref="childRef" v-loading="loading" :requests="requests" />
     <teleport to="body">
-      <request-modal
+      <RequestModal
         :show="modal"
         @close="modal = false"
         @created="modal = false"
       >
         <template #header>Создать заявку</template>
-      </request-modal>
+    </RequestModal>
     </teleport>
   </Page>
 </template>
