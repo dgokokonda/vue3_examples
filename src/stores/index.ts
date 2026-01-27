@@ -4,6 +4,7 @@ export { useAuthStore } from "./auth.store";
 // export { useProductsStore } from "./products.store";
 export { useRequestStore } from "./request.store";
 export { useUserStore } from "./user.store";
+export { useUsersStore } from "./users.store";
 // import { devtools } from "pinia-plugin-devtools";
 
 // Опционально: можно добавить хук для единой инициализации
