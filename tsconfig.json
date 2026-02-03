@@ -1,6 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/test/setup.ts", "vuex-shim.d.ts", "vue-virtual-scroller.d.ts"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/tests/setup.ts", "vuex-shim.d.ts", "vue-virtual-scroller.d.ts"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "composite": true,

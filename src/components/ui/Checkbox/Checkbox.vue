@@ -24,15 +24,17 @@ function handleChange(event: Event) {
 }
 </script>
 <template>
-  <label :for="name">{{ label }}</label>
+  <label v-if="label" :for="name">{{ label }}</label>
   <input
     :name="name"
     :id="name"
     type="checkbox"
+    v-bind="$attrs"
     v-model="checked"
     @change="handleChange"
+    class="checkbox"
   />
-  <p>Checked: {{ checked ? "Yes" : "No" }}</p>
+  <p class="checkbox-value">Checked: {{ checked ? "Yes" : "No" }}</p>
 </template>
 <style scoped>
 .checkbox {
