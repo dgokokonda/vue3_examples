@@ -6,6 +6,10 @@ $color: #26e18d;
   --error-color: #e55151;
 }
 
+html {
+  background-color: #afa5fa;
+}
+
 p:hover {
   color: $color;
 }

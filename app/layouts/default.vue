@@ -1,5 +1,6 @@
 <script setup></script>
 <template>
-  <div>Default layout</div>
-  <slot></slot>
+  <div class="bg-blue-200 min-h-screen p-10">
+    <slot></slot>
+  </div>
 </template>

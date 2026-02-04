@@ -1,17 +1,11 @@
 <template>
-  <div class="container p-10 bg-gray-50 min-h-screen">
-    <h1 class="text-gray-700 mb-4">Учебное приложение на Nuxt 4</h1>
-    <!-- SEO meta data: -->
-    <!-- <Head>
-      <Title>{{ title }}</Title>
-      <Meta name="description" :content="title" />
-      <Style> body { background-color: green; } </Style>
-    </Head> -->
-    <Nav></Nav>
+  <Header></Header>
+  <div class="container bg-gray-50 w-full max-w-full">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
   </div>
+  <Footer></Footer>
 </template>
 <script setup lang="ts">
 // import { ref } from "vue";
