@@ -9,24 +9,25 @@
   </div>
 </template>
 <script setup lang="ts">
-import fieldsMock from "~/mock/fields.json";
+// import fieldsMock from "~/mock/fields.json";
 import type { Field } from "./person-form.types";
 
-let fields = ref<Field[]>([]);
-const response = await new Promise<Field[]>((resolve, reject) =>
-  setTimeout(() => {
-    try {
-      const response: Field[] = fieldsMock as Field[];
-      resolve(response);
-    } catch (error) {
-      reject("Ошибка загрузки данных");
-    }
-  }, 2000),
-);
-fields.value = response;
+const fields = computed(() => personStore.fields as Field[]);
+const personStore = usePersonStore();
+try {
+  await personStore.getFields();
+} catch (error) {
+  console.error("Ошибка загрузки данных");
+}
 
-const onSubmit = (data: any, valid: boolean) => {
-  console.log("submit", data, valid);
+const onSubmit = async (data: any, valid: boolean) => {
+  // console.log("submit", data, valid);
+  if (!valid) {
+    console.error("Form isn't valid!");
+    return;
+  }
+
+  await personStore.savePersonForm(data);
 };
 
 const onValidate = (valid: boolean, fields: Record<string, string>) => {

@@ -1,0 +1,3 @@
+<template>
+  <PersonForm></PersonForm>
+</template>
